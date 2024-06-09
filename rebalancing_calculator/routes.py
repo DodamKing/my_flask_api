@@ -13,8 +13,8 @@ def search_stock(query: str):
 
 @rc.get("/price/<symbol>")
 def get_stock_price(symbol: str):
-    df = fdr.DataReader(symbol)  # 종목의 데이터 가져오기
-    if not df.empty:
-        price = df['Close'].iloc[-1]  # 가장 최근 종가 가져오기
-        return {"symbol": symbol, "price": float(price)}
-    return {"error": "Symbol not found"}
+    stocks = fdr.StockListing('ETF/KR')
+    stock = stocks[stocks['Symbol'] == symbol]
+    price = stock['Price'].iloc[0]
+    
+    return {"symbol": symbol, "price": price}
