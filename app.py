@@ -7,7 +7,7 @@ app.register_blueprint(rc, url_prefix='/api/rebalancing-calculator')
 
 @app.route('/')
 def hello_word():
-    return 'hello world'
+    return 'my api server is good!'
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000)
