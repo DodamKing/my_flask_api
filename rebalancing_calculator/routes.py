@@ -23,7 +23,11 @@ def get_stock_price(symbol: str):
         df = fdr.DataReader(symbol)
 
         if not df.empty and 'Close' in df.columns:
-            price = int(df['Close'].iloc[-1])
+            if symbol[0].isdigit():
+                price = int(df['Close'].iloc[-1])
+            else:
+                price = round(df['Close'].iloc[-1], 2)
+            
             return jsonify({"symbol": symbol, "price": price}), 200
         
         else: return jsonify(), 400
