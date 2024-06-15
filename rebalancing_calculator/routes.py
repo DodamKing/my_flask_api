@@ -10,7 +10,7 @@ def search_stock(query: str):
         stocks = pd.read_csv('stocks.csv')
         result = stocks[stocks['Name'].str.contains(query, case=False, na=False)]
 
-        return jsonify(result.to_json(orient='records', force_ascii=False)), 200
+        return result.to_json(orient='records', force_ascii=False), 200
     
     except Exception as e:
         print(f"검색 에러 남: {e}")
